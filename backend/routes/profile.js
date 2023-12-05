@@ -184,4 +184,46 @@ router.delete("/",auth,async(req,res)=>{
     }
 })
 
+// @route   POST /profile/experience
+// @desc    Add experience to profile
+// @access  Private
+
+router.put("/experience",auth,async(req,res)=>{
+
+    const  {
+        title,
+        company,
+        location,
+        from,
+        to,
+        current,
+        description
+      }= req.body;
+      const newExp={
+        title,
+        company,
+        location,
+        from,
+        to,
+        current,
+        description}
+
+    try {
+
+       
+        const profile= await Profile.findOne({user: req.user.id})
+        // console.log(profile);
+
+        
+        profile.experience.unshift(newExp);
+
+        await profile.save();
+        res.json(profile)
+    } catch (error) {
+        console.error(error.message)
+        res.status(500).send("Server error")
+
+    }
+})
+
 module.exports=router
