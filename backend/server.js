@@ -14,7 +14,7 @@ const PORT=process.env.PORT || 5000
 //Define Routes
 app.use("/users",userRouter)
 app.use("/auth",authRouter)
-app.use("/post",postRouter)
+app.use("/posts",postRouter)
 app.use("/profile",profileRouter)
 
 app.listen(PORT,async()=>{
