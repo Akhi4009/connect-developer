@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import {Link} from "react-router-dom"
 import {useDispatch} from "react-redux"
 import { setAlert } from '../redux/alert/action'
+import { register } from '../redux/auth/action'
 
 
 const Register = () => {
@@ -28,7 +29,7 @@ const Register = () => {
     if(password !== password2){
       dispatch(setAlert('Password do not match','danger'));
     }else{
-      console.log(formData)
+     dispatch(register({name,email,password}))
     }
   }
 
@@ -56,7 +57,7 @@ const Register = () => {
           name="email"
           value={email}
           onChange={(e)=>handleChange(e)}
-          required
+           required
 
            />
           <small className="form-text"

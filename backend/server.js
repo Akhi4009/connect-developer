@@ -1,11 +1,12 @@
 const express=require('express')
+const cors=require("cors")
 const connection=require("./db")
 const userRouter=require("./routes/users")
 const authRouter=require("./routes/auth")
 const postRouter=require("./routes/posts")
 const profileRouter=require("./routes/profile")
 const app=express()
-
+app.use(cors())
 app.use(express.json({extended:false}))
 
 app.get("/",(req,res)=>res.send('API running'))
