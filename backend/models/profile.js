@@ -20,7 +20,7 @@ const ProfileSchema= new Schema({
         type:String
     },
     location:{
-        type:string
+        type:String
     },
     status:{
         type:String,
@@ -47,7 +47,7 @@ const ProfileSchema= new Schema({
                 required:true
             },
             location:{
-                type:string
+                type:String
             },
             from: {
                 type: Date,
@@ -121,3 +121,5 @@ const ProfileSchema= new Schema({
 })
 
 const Profile=mongoose.model('profile',ProfileSchema)
+
+module.exports=Profile
