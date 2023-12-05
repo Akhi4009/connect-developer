@@ -32,7 +32,7 @@ router.post("/register",async(req,res)=>{
         d : 'mm'
     })
 
-    console.log(avatar)
+    // console.log(avatar)
 
         user = new User({
         name,
@@ -63,7 +63,7 @@ router.post("/register",async(req,res)=>{
  let token=  jwt.sign(payload,
     process.env.secretkey,
     {expiresIn:360000})
-   console.log(token)
+//    console.log(token)
   res.json({
     msg:"Resitered sucessfully",
     token
