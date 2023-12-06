@@ -4,8 +4,10 @@ import {
     USER_LOADED,
     AUTH_ERROR,
     LOGIN_SUCCESS,
-    LOGIN_FAILURE 
-           } from "./actionType";
+    LOGIN_FAILURE, 
+    LOGOUT
+           
+} from "./actionType";
 
 const initialState={
     token: localStorage.getItem('token'),
@@ -30,8 +32,9 @@ export const reducer =(state=initialState,{type,payload})=>{
         case REGISTER_FAILURE :
         case AUTH_ERROR:
         case LOGIN_FAILURE:
+        case LOGOUT:
             localStorage.removeItem('token')
-            return {...state,isAuth:false,isLoading:false}
+            return {...state,isAuth:null,isLoading:false}
     
 
         default :

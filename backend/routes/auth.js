@@ -34,18 +34,18 @@ router.get("/", auth ,async(req,res)=>{
 router.post("/login",async(req,res)=>{
 
     const { email, password} = req.body
+   
     try{
     // See if user exists 
     
     let user = await User.findOne({email}).select('+password')
-    //  console.log(user)
-    
-
+   
     if(!user){
        return  res.status(400).json({errors:[{msg: 'Invalid Credential' }] })
     }
 
     const isMatch= await bcrypt.compare(password,user.password)
+    
 
     if(!isMatch){
         return res.status(400).json({errors:[{msg: 'Invalid Credential' }] })
@@ -64,9 +64,9 @@ router.post("/login",async(req,res)=>{
  let token=  jwt.sign(payload,
     process.env.secretkey,
     {expiresIn:360000})
-   console.log(token)
+   
   res.json({
-    msg:"Resitered sucessfully",
+    msg:"Login sucessfully",
     token
   })
 
