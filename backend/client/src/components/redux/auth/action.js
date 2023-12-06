@@ -1,5 +1,12 @@
 import axios from "axios"
-import { REGISTER_FAILURE,REGISTER_SUCCESS,USER_LOADED,AUTH_ERROR } from "./actionType";
+import { 
+    REGISTER_FAILURE,
+    REGISTER_SUCCESS,
+    USER_LOADED,
+    AUTH_ERROR,
+    LOGIN_SUCCESS,
+    LOGIN_FAILURE 
+                  } from "./actionType";
 import  {setAlert} from "../alert/action"
 import setAuthToken from "../../../utils/setAuthToken"
 
@@ -14,7 +21,7 @@ export const loadUser = ()=>  async(dispatch) =>{
     try {
         const res = await axios.get(`http://localhost:5000/auth`);
 
-        console.log(res)
+        // console.log(res)
 
         dispatch({
             type:USER_LOADED,
@@ -46,13 +53,14 @@ export const register=({name,email,password})=>async (dispatch)=>{
         
         const res = await axios.post(`http://localhost:5000/users/register`,body,config)
 
-        console.log(res)
+        // console.log(res)
 
         dispatch({
             type:REGISTER_SUCCESS,
             payload:res['data']['token']
         })
         dispatch(setAlert(res.data.msg,'success'))
+        dispatch(loadUser())
     } catch (error) {
 
         const err=error.response.data.errors
@@ -66,6 +74,50 @@ export const register=({name,email,password})=>async (dispatch)=>{
        
         dispatch({
             type:REGISTER_FAILURE
+        })
+    }
+
+}
+
+// Login User
+
+export const login=({email,password})=>async (dispatch)=>{
+    
+    const config = {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+
+    const body = JSON.stringify({email,password});
+
+    try {
+        
+        const res = await axios.post(`http://localhost:5000/auth/login`,body,config)
+
+        // console.log(res)
+
+        dispatch({
+            type:LOGIN_SUCCESS,
+            payload:res['data']['token']
+        })
+
+        dispatch(setAlert(res.data.msg,'success'))
+        dispatch(loadUser())
+        
+    } catch (error) {
+
+         const err =error.response.data.errors
+        console.log(error)
+
+        if(err){
+            err.map(err=>dispatch(setAlert(err.msg,'danger')))
+
+        }
+
+       
+        dispatch({
+            type:LOGIN_FAILURE
         })
     }
 

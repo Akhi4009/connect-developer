@@ -1,5 +1,8 @@
-import { useState } from "react"
-import {Link} from "react-router-dom"
+import { useEffect, useState } from "react"
+import {Link,useNavigate} from "react-router-dom"
+import {useSelector,useDispatch} from "react-redux"
+
+import { login } from "../redux/auth/action"
 
 const Login = () => {
 
@@ -9,6 +12,12 @@ const Login = () => {
    
   })
 
+  const Navigate=useNavigate()
+
+  const dispatch=useDispatch()
+  const auth=useSelector(state=>state.authReducer)
+//  console.log(auth)
+  
   const handleChange=(e)=>{
 
     const {name,value}=e.target
@@ -16,15 +25,23 @@ const Login = () => {
 
   }
 
+  const {email,password}=formData
+
   const handleSubmit=(e)=>{
     e.preventDefault()
-    console.log(formData)
+   
+    dispatch(login({email,password}))
   
   }
 
+useEffect(()=>{
+ if(auth.isAuth){
+    console.log(auth.isAuth)
+    Navigate("/")
+  }
+},[auth.isAuth,Navigate])
 
-
-  const {email,password}=formData
+  
   return (
     <>
       <h1 className="large text-primary">Sign In</h1>
