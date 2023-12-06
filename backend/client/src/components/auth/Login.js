@@ -37,7 +37,7 @@ const Login = () => {
 useEffect(()=>{
  if(auth.isAuth){
     console.log(auth.isAuth)
-    Navigate("/")
+    Navigate("/dashboard")
   }
 },[auth.isAuth,Navigate])
 

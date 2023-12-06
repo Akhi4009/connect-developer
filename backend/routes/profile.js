@@ -6,6 +6,7 @@ const Profile=require("../models/profile")
 const auth = require("../middleware/auth")
 const User = require("../models/user")
 require("dotenv").config()
+
 // Get profile/me
 // Private
 
@@ -17,9 +18,9 @@ router.get("/me",auth,async(req,res)=>{
              'user',
             ['name','avatar']
        )
-console.log(profile)
+// console.log(profile)
         if(!profile){
-            return res.status(400).json({msg: 'There is no profile for this user'});
+            return res.status(400).json([{msg: 'There is no profile for this user'}]);
         }
 
         res.json(profile)

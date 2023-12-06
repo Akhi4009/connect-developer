@@ -9,6 +9,9 @@ import Login from "./components/auth/Login"
 import Alert from "./components/layout/Alert";
 import setAuthToken from "./utils/setAuthToken";
 import { loadUser } from "./components/redux/auth/action";
+import Dashboard from "./components/dashboard/Dashboard";
+import PrivateRoute from "./routing/PrivateRoute";
+import CreateProfile from "./components/profile/CreateProfile";
 
 if(localStorage.token){
   setAuthToken(localStorage.token)
@@ -29,8 +32,10 @@ function App() {
     <Alert/>
      <Routes>
      <Route path="/" element={<Landing/>}/>
+     <Route path="/dashboard" element={<PrivateRoute><Dashboard/></PrivateRoute>}/>
      <Route path="/register" element={<Register/>} />
      <Route path="/login" element={<Login/>}/>
+     <Route path="/createprofile" element={<PrivateRoute><CreateProfile/></PrivateRoute>}/>
      </Routes>
      </section>
      

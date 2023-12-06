@@ -1,7 +1,19 @@
-import React from 'react'
-import {Link} from "react-router-dom"
+import React, { useEffect } from 'react'
+import {Link, useNavigate} from "react-router-dom"
+import { useSelector } from 'react-redux'
 
 const Landing = () => {
+
+  const Navigate=useNavigate()
+  const {isAuth}=useSelector(state=>state.authReducer)
+  useEffect(()=>{
+
+    if(isAuth!==null){
+      Navigate("/dashboard")
+    }
+  },[])
+ 
+
   return (
     <section className="landing">
       <div className="dark-overlay">
@@ -12,8 +24,8 @@ const Landing = () => {
             other developers
           </p>
           <div className="buttons">
-            <Link to="register" className="btn btn-primary">Sign Up</Link>
-            <Link to="login" className="btn btn-light">Login</Link>
+            <Link to="/register" className="btn btn-primary">Sign Up</Link>
+            <Link to="/login" className="btn btn-light">Login</Link>
           </div>
         </div>
       </div>

@@ -3,10 +3,11 @@ import {composeWithDevTools} from "redux-devtools-extension"
 import {thunk} from "redux-thunk"
 import {reducer as alertReducer} from "./alert/reducer"
 import {reducer as authReducer} from "../redux/auth/reducer"
+import {reducer as profileReducer} from "../redux/profile/reducer"
 
 const rootReducer=combineReducers({
 
-    alertReducer,authReducer
+    alertReducer,authReducer,profileReducer
 })
 
 const store=legacy_createStore(rootReducer,composeWithDevTools(applyMiddleware(thunk)))

@@ -6,9 +6,10 @@ import {
     AUTH_ERROR,
     LOGIN_SUCCESS,
     LOGIN_FAILURE,
-    LOGOUT 
-                  
+    LOGOUT ,
+    
 } from "./actionType";
+import { CLEAR_PROFILE } from "../profile/actionType";
 import  {setAlert} from "../alert/action"
 import setAuthToken from "../../../utils/setAuthToken"
 
@@ -129,5 +130,8 @@ export const logOut=()=>dispatch=>{
 
     dispatch({
         type:LOGOUT
+    })
+    dispatch({
+        type:CLEAR_PROFILE
     })
 }
