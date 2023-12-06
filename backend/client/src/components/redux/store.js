@@ -5,7 +5,7 @@ import {reducer as authReducer} from "../redux/auth/reducer"
 
 const rootReducer=combineReducers({
 
-    alertReducer
+    alertReducer,authReducer
 })
 
 const store=legacy_createStore(rootReducer,applyMiddleware(thunk))

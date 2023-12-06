@@ -5,6 +5,13 @@ const jwt=require("jsonwebtoken")
 const User=require("../models/user")
 const auth = require("../middleware/auth")
 
+
+// @ruote  Get /auth
+
+// @desc Test Rute
+
+// @access Private
+
 router.get("/", auth ,async(req,res)=>{
    
     try{
@@ -16,6 +23,13 @@ router.get("/", auth ,async(req,res)=>{
 
     }
 })
+
+
+// @ruote  Post /auth
+
+// @desc Authenticate User & get Token
+
+// @access Private
 
 router.post("/login",async(req,res)=>{
 
