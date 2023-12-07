@@ -17,7 +17,13 @@ export const getCurrentProfile=()=>async dispatch=>{
         })
         
     } catch (error) {
+        const err=error.response.data
         console.log(error)
+
+         if(err){
+            err.map(err=>dispatch(setAlert(err.msg,'danger')))
+
+         }
         dispatch({
             type:PROFILE_ERROR,
             payload:{
@@ -45,7 +51,7 @@ export const createProfile=(formData,navigate,edit=false)=> async dispatch=>{
             type:GET_PROFILE,
             payload:res.data
         })
-        dispatch(setAlert(edit ? 'Profile Updated' : 'Profile Created','success'))
+        dispatch(setAlert((edit ? 'Profile Updated' : 'Profile Created'),'success'))
 
         if(!edit){
             navigate('/dashboard')
@@ -54,7 +60,7 @@ export const createProfile=(formData,navigate,edit=false)=> async dispatch=>{
     } catch (error) {
         
          const err=error.response.data
-        console.log(err)
+        console.log(error)
 
          if(err){
             err.map(err=>dispatch(setAlert(err.msg,'danger')))

@@ -12,6 +12,7 @@ import { loadUser } from "./components/redux/auth/action";
 import Dashboard from "./components/dashboard/Dashboard";
 import PrivateRoute from "./routing/PrivateRoute";
 import CreateProfile from "./components/profile/CreateProfile";
+import EditProfile from "./components/profile/EditProfile";
 
 if(localStorage.token){
   setAuthToken(localStorage.token)
@@ -38,6 +39,7 @@ function App() {
      <Route path="/register" element={<Register/>} />
      <Route path="/login" element={<Login/>}/>
      <Route path="/createprofile" element={<PrivateRoute><CreateProfile/></PrivateRoute>}/>
+     <Route path="/edit-profile" element={<PrivateRoute><EditProfile/></PrivateRoute>}/>
      </Routes>
      <Alert/>
      </section>

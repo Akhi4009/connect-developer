@@ -16,7 +16,7 @@ const Dashboard = () => {
 
     dispatch(getCurrentProfile())
 
-  },[])
+  },[dispatch])
 
 
   return (

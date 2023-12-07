@@ -1,35 +1,59 @@
-import { useState} from 'react'
+import {useState,useEffect} from 'react'
 import {Link,useNavigate} from "react-router-dom"
 
-import {useDispatch} from "react-redux"
-import { createProfile } from '../redux/profile/action'
+import {useSelector,useDispatch} from "react-redux"
+import { createProfile,  getCurrentProfile } from '../redux/profile/action'
 
-const CreateProfile = () => {
+const EditProfile = () => {
 
+    const {profile,isLoading}=useSelector(state=>state.profileReducer)
 
-  const dispatch=useDispatch()
- 
-  const navigate=useNavigate()
+ const [formData,setFormData]=useState({
 
-    const [formData,setFormData]=useState({
-
-        company:'',
-        website:'',
-        location:'',
-        skills:'',
-        status:'',
-        githubusername:'',
-        bio:'',
-        twitter:'',
-        facebook:'',
-        linkedin:'',
-        youtube:'',
-        instagram:'',
+    company: isLoading || !profile.company ? '' : profile.company,
+    website: isLoading || !profile.website ? '' : profile.website,
+    location: isLoading || !profile.location ? '' : profile.location,
+    skills: isLoading || !profile.skills ? '' : profile.skills,
+    status: isLoading || !profile.status ? '' : profile.status,
+    githubusername: isLoading || !profile.githubusername ? '' : profile.githubusername,
+    bio: isLoading || !profile.bio ? '' : profile.bio,
+    twitter: isLoading || !profile.twitter ? '' : profile.twitter,
+    facebook: isLoading || !profile.facebook ? '' : profile.facebook,
+    linkedin:isLoading || !profile.linkedin ? '' : profile.linkedin,
+    youtube:isLoading || !profile.youtube ? '' : profile.youtube,
+    instagram:isLoading || !profile.instagram ? '' : profile.instagram,
     })
 
     const [displaySocialInput,toggleSocialInput]=useState(false)
 
+    const dispatch=useDispatch()
+  
+    const navigate=useNavigate()
+
     
+    // console.log(profile)
+
+    
+
+    useEffect(()=>{
+
+        dispatch(getCurrentProfile())
+        // setFormData({
+        // company: isLoading || !profile.company ? '' : profile.company,
+        // website: isLoading || !profile.website ? '' : profile.website,
+        // location: isLoading || !profile.location ? '' : profile.location,
+        // skills: isLoading || !profile.skills ? '' : profile.skills,
+        // status: isLoading || !profile.status ? '' : profile.status,
+        // githubusername: isLoading || !profile.githubusername ? '' : profile.githubusername,
+        // bio: isLoading || !profile.bio ? '' : profile.bio,
+        // twitter: isLoading || !profile.twitter ? '' : profile.twitter,
+        // facebook: isLoading || !profile.facebook ? '' : profile.facebook,
+        // linkedin:isLoading || !profile.linkedin ? '' : profile.linkedin,
+        // youtube:isLoading || !profile.youtube ? '' : profile.youtube,
+        // instagram:isLoading || !profile.instagram ? '' : profile.instagram,
+        // })
+  
+      },[dispatch,isLoading])
 
     const handleChage=(e)=>{
         const {name,value}=e.target
@@ -56,7 +80,7 @@ const CreateProfile = () => {
 
         e.preventDefault()
 
-         dispatch(createProfile(formData,navigate))
+         dispatch(createProfile(formData,navigate,true))
         // console.log(formData)
     }
   return (
@@ -171,4 +195,4 @@ const CreateProfile = () => {
   )
 }
 
-export default CreateProfile
+export default EditProfile

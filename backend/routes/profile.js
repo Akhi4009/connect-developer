@@ -58,6 +58,8 @@ router.post("/",auth,async(req,res)=>{
         instagram
     } = req.body
 
+    // console.log(skills);
+    // console.log(typeof (skills))
     const profileFields={};
     profileFields.user=req.user.id;
     if(handle) profileFields.handle=handle;
@@ -69,8 +71,10 @@ router.post("/",auth,async(req,res)=>{
     if (githubusername)
       profileFields.githubusername = req.body.githubusername;
     // Skills - Spilt into array
-    if (skills ) {
+    if (skills && typeof (skills)==='string' ) {
       profileFields.skills = skills.split(',');
+    }else{
+        profileFields.skills = skills
     }
 
    
