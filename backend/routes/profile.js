@@ -230,9 +230,9 @@ router.put("/experience",auth,async(req,res)=>{
         res.json(profile)
     } catch (error) {
         console.error(error.message)
-        if(error.errors.status.kind==='required'){
-            return res.status(400).json([{msg:error.errors.status.message}])
-           }
+        // if(error.errors.status.kind==='required'){
+        //     return res.status(400).json([{msg:error.errors.status.message}])
+        //    }
         res.status(500).send("Server error")
 
     }

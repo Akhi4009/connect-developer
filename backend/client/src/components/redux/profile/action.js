@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_PROFILE,PROFILE_ERROR } from "./actionType";
+import { GET_PROFILE,PROFILE_ERROR,UPDATE_PROFILE } from "./actionType";
 import {setAlert} from "../alert/action"
 
 
@@ -75,4 +75,91 @@ export const createProfile=(formData,navigate,edit=false)=> async dispatch=>{
             }
         })
     }
+}
+
+
+//  Add Expereince
+
+export const addExperience=(formData,navigate)=>async dispatch=>{
+
+    try {
+        const config={
+            headers:{
+                'Content-type': 'application/json'
+            }
+        }
+
+        const res= await axios.put(`http://localhost:5000/profile/experience`,formData,config)
+        
+        dispatch({
+            type:UPDATE_PROFILE,
+            payload:res.data
+        })
+        dispatch(setAlert('experience added','success'))
+
+        navigate('/dashboard')
+
+        
+    } catch (error) {
+        
+         const err=error.response.data
+        console.log(error)
+
+         if(err){
+            err.map(err=>dispatch(setAlert(err.msg,'danger')))
+
+         }
+        
+        dispatch({
+            type:PROFILE_ERROR,
+            payload:{
+                msg:error.response.statusText,
+                status:error.response.status
+            }
+        })
+    }
+    
+}
+
+//Add Education 
+
+export const addEducation=(formData,navigate)=>async dispatch=>{
+
+    try {
+        const config={
+            headers:{
+                'Content-type': 'application/json'
+            }
+        }
+
+        const res= await axios.put(`http://localhost:5000/profile/education`,formData,config)
+        
+        dispatch({
+            type:UPDATE_PROFILE,
+            payload:res.data
+        })
+        dispatch(setAlert('experience added','success'))
+
+        navigate('/dashboard')
+
+        
+    } catch (error) {
+        
+         const err=error.response.data
+        console.log(error)
+
+         if(err){
+            err.map(err=>dispatch(setAlert(err.msg,'danger')))
+
+         }
+        
+        dispatch({
+            type:PROFILE_ERROR,
+            payload:{
+                msg:error.response.statusText,
+                status:error.response.status
+            }
+        })
+    }
+    
 }
