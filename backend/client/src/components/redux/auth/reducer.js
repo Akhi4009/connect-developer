@@ -1,3 +1,4 @@
+import { ACCOUNT_DELETED } from "../profile/actionType";
 import { 
     REGISTER_SUCCESS,
     REGISTER_FAILURE,
@@ -8,6 +9,7 @@ import {
     LOGOUT
            
 } from "./actionType";
+
 
 const initialState={
     token: localStorage.getItem('token'),
@@ -33,6 +35,7 @@ export const reducer =(state=initialState,{type,payload})=>{
         case AUTH_ERROR:
         case LOGIN_FAILURE:
         case LOGOUT:
+        case ACCOUNT_DELETED:
             localStorage.removeItem('token')
             return {...state,isAuth:null,isLoading:false}
     

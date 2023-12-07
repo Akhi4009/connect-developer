@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_PROFILE,PROFILE_ERROR,UPDATE_PROFILE } from "./actionType";
+import { CLEAR_PROFILE, GET_PROFILE,PROFILE_ERROR,UPDATE_PROFILE,ACCOUNT_DELETED } from "./actionType";
 import {setAlert} from "../alert/action"
 
 
@@ -219,5 +219,35 @@ export const deleteEducation=(id)=>async dispatch=>{
         })
     }
     
+}
+
+
+//  Delete account  and profile
+
+export const deleteAccount=()=> async dispatch=>{
+
+    if(window.confirm('Are you sure to delete account?')){
+
+        try {
+        
+            const res= await axios.delete(`http://localhost:5000/profile`)
+            console.log(res)
+            
+            dispatch({type:CLEAR_PROFILE})
+            dispatch({type:ACCOUNT_DELETED})
+
+            dispatch(setAlert('Your Account has been pernanently  deleted',))
+    
+            } catch (error) {
+            console.log(error)
+            dispatch({
+                type:PROFILE_ERROR,
+                payload:{
+                    msg:error.response.statusText,
+                    status:error.response.status
+                }
+            })
+        }
+    }
 }
 

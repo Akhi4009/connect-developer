@@ -1,12 +1,12 @@
 import React from 'react'
-import {useSelector,useDispatch} from "react-redux"
+import {useDispatch} from "react-redux"
 import Moment from "react-moment"
 import { deleteEducation } from '../redux/profile/action'
 
-const Educations = () => {
+const Educations = ({education}) => {
 
-    const {profile}=useSelector(state=>state.profileReducer)
-    const education=(profile?.education);
+    
+   
     const dispatch=useDispatch()
    
 
