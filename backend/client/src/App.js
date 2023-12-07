@@ -34,8 +34,9 @@ function App() {
      
      
     <section className="container">
-    
+    <Alert/>
      <Routes>
+    
      <Route path="/" element={<Landing/>}/>
      <Route path="/dashboard" element={<PrivateRoute><Dashboard/></PrivateRoute>}/>
      <Route path="/register" element={<Register/>} />
@@ -45,7 +46,7 @@ function App() {
      <Route path="/add-experience" element={<PrivateRoute><AddExpeience/></PrivateRoute>}/>
      <Route path="/add-education" element={<PrivateRoute><AddEducation/></PrivateRoute>}/>
      </Routes>
-     <Alert/>
+     
      </section>
      
      

@@ -4,6 +4,8 @@ import {useSelector,useDispatch} from "react-redux"
 import {getCurrentProfile} from "../redux/profile/action"
 import Spinner from '../layout/Spinner'
 import DashboardAction from './DashboardAction'
+import Experiences from './Experiences'
+import Educations from './Educations'
 
 const Dashboard = () => {
 
@@ -29,6 +31,9 @@ const Dashboard = () => {
     </p>
     </>
     {profile !== null ? <><DashboardAction/></> : <><Link to="/createprofile" className='btn btn-primary'>create profile</Link></>}
+    
+    <Experiences/>
+    <Educations/>
     </>
   )
 }
