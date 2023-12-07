@@ -138,7 +138,7 @@ export const addEducation=(formData,navigate)=>async dispatch=>{
             type:UPDATE_PROFILE,
             payload:res.data
         })
-        dispatch(setAlert('experience added','success'))
+        dispatch(setAlert('education added','success'))
 
         navigate('/dashboard')
 
