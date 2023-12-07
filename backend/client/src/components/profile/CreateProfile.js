@@ -1,8 +1,16 @@
 import {useState} from 'react'
-import {Link} from "react-router-dom"
+import {Link,useLocation,useNavigate} from "react-router-dom"
+
+import {useSelector,useDispatch} from "react-redux"
+import { createProfile } from '../redux/profile/action'
 
 const CreateProfile = () => {
 
+
+  const dispatch=useDispatch()
+  // const location1=useLocation()
+  // console.log(location1)
+  const navigate=useNavigate()
 
     const [formData,setFormData]=useState({
 
@@ -46,7 +54,9 @@ const CreateProfile = () => {
     const handleSubmit=(e)=>{
 
         e.preventDefault()
-        console.log(formData)
+
+         dispatch(createProfile(formData,navigate))
+        // console.log(formData)
     }
   return (
     <>
@@ -59,7 +69,7 @@ const CreateProfile = () => {
         profile stand out
       </p>
       <small>* = required field</small>
-      <form className="form" onSubmit={handleSubmit}>
+      <form className="form" onSubmit={(e)=>handleSubmit(e)}>
         <div className="form-group">
           <select name="status" value={status} onChange={(e)=>handleChage(e)}>
             <option value="0">* Select Professional Status</option>
@@ -95,7 +105,7 @@ const CreateProfile = () => {
           >
         </div>
         <div className="form-group">
-          <input type="text" placeholder="* Skills" name="skills" value={skills}  onChange={(e)=>handleChage(e)}/>
+          <input type="text" placeholder="* Skills" name="skills" value={skills}  onChange={(e)=>handleChage(e)} required/>
           <small className="form-text"
             >Please use comma separated values (eg.
             HTML,CSS,JavaScript,PHP)</small

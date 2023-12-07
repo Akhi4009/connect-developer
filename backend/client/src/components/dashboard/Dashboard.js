@@ -3,6 +3,7 @@ import {Link} from "react-router-dom"
 import {useSelector,useDispatch} from "react-redux"
 import {getCurrentProfile} from "../redux/profile/action"
 import Spinner from '../layout/Spinner'
+import DashboardAction from './DashboardAction'
 
 const Dashboard = () => {
 
@@ -27,7 +28,7 @@ const Dashboard = () => {
     <i className='fa fa-user'></i>Welcome {user &&user.name}
     </p>
     </>
-    {profile !== null ? <>has</> : <><Link to="/createprofile" className='btn btn-primary'>create profile</Link></>}
+    {profile !== null ? <><DashboardAction/></> : <><Link to="/createprofile" className='btn btn-primary'>create profile</Link></>}
     </>
   )
 }

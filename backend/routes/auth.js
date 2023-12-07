@@ -70,9 +70,12 @@ router.post("/login",async(req,res)=>{
     token
   })
 
-}catch(err){
+}catch(error){
 
-    console.error(err.message)
+    console.error(error.message)
+    if(error.errors.status.kind==='required'){
+        return res.status(400).json([{msg:error.errors.status.message}])
+       }
     res.status(500).send('Server error')
 }
 })

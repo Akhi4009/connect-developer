@@ -26,10 +26,12 @@ function App() {
 
   return (
     <>
+    
      <Navbar/>
      
+     
     <section className="container">
-    <Alert/>
+    
      <Routes>
      <Route path="/" element={<Landing/>}/>
      <Route path="/dashboard" element={<PrivateRoute><Dashboard/></PrivateRoute>}/>
@@ -37,7 +39,9 @@ function App() {
      <Route path="/login" element={<Login/>}/>
      <Route path="/createprofile" element={<PrivateRoute><CreateProfile/></PrivateRoute>}/>
      </Routes>
+     <Alert/>
      </section>
+     
      
     </>
   );
