@@ -17,13 +17,10 @@ export const getCurrentProfile=()=>async dispatch=>{
         })
         
     } catch (error) {
-        const err=error.response.data
+       
         console.log(error)
 
-         if(err){
-            err.map(err=>dispatch(setAlert(err.msg,'danger')))
-
-         }
+        
         dispatch({
             type:PROFILE_ERROR,
             payload:{

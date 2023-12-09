@@ -5,6 +5,7 @@ const router=express.Router();
 const Profile=require("../models/profile")
 const auth = require("../middleware/auth")
 const User = require("../models/user")
+const Post= require("../models/posts")
 require("dotenv").config()
 
 // Get profile/me
@@ -177,9 +178,10 @@ router.get("/user/:user_id",async(req,res)=>{
 router.delete("/",auth,async(req,res)=>{
 
     try {
-       // @todo remove user and posts
+       //  Remove user posts
+       await Post.deleteMany({user:req.user.id})
 
-       // Delete Profile
+       // Remove Profile
        await Profile.findOneAndDelete({user: req.user.id})
 
        // Delete User
