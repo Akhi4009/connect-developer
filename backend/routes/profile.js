@@ -196,9 +196,11 @@ router.delete("/",auth,async(req,res)=>{
     }
 })
 
+
 // @route   POST /profile/experience
 // @desc    Add experience to profile
 // @access  Private
+
 
 router.put("/experience",auth,async(req,res)=>{
 
@@ -241,9 +243,12 @@ router.put("/experience",auth,async(req,res)=>{
     }
 })
 
+
 // @route   DELETE /profile/experience/:exp_id
 // @desc    Delete experience from profile
 // @access  Private
+
+
 
 router.delete("/experience/:exp_id",auth,async(req,res)=>{
 
@@ -272,9 +277,13 @@ router.delete("/experience/:exp_id",auth,async(req,res)=>{
 
 })
 
+
+
 // @route   POST /profile/education
 // @desc    Add education to profile
 // @access  Private
+
+
 
 router.put("/education",auth,async(req,res)=>{
 
@@ -323,6 +332,8 @@ router.put("/education",auth,async(req,res)=>{
 // @desc    Delete education from profile
 // @access  Private
 
+
+
 router.delete("/education/:edu_id",auth,async(req,res)=>{
 
     try {
@@ -350,9 +361,13 @@ router.delete("/education/:edu_id",auth,async(req,res)=>{
 
 })
 
+
+
 // @route   Get /profile/github/:username
 // @desc    Get user repos from Github
 // @access  Public
+
+
 
 router.get("/github/:username",async(req,res)=>{
 
@@ -365,9 +380,11 @@ router.get("/github/:username",async(req,res)=>{
 
         }
 
-        // console.log(options.url)
+        //  console.log(options.url)
+
         request(options,(error,responce,body)=>{
             if(error) console.error(error)
+            // console.log(responce)
             if(responce.statusCode !==200){
                 return res.status(404).json({msg:"No Github profile found"})
             }

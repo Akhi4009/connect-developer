@@ -9,7 +9,7 @@ import {
 
 const initialState={
     profile:null,
-    profiles:[],
+    profiles:null,
     repos:[],
     isLoading:true,
     error:{}
@@ -31,7 +31,7 @@ export const reducer=(state=initialState,{type,payload})=>{
             return {...state,repos:payload,isLoading:false};  
 
         case PROFILE_ERROR:
-            return {...state,error:payload,isLoading:false};
+            return {...state,error:payload,isLoading:false,};
 
         case CLEAR_PROFILE:
             return{...state,profile:null,repos:[],isLoading:false}

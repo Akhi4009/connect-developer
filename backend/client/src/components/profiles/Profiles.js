@@ -19,7 +19,7 @@ const Profiles = () => {
     
   return (
     <>
-    {isLoading ? <Spinner/> : <>
+    {profiles === null || isLoading ? <Spinner/> : <>
     
     <h1 className="large text-primary">Developer</h1>
     <p className="lead">
@@ -28,13 +28,14 @@ const Profiles = () => {
     <div className="profiles">
     {profiles?.length>0 ? profiles.map(profile=>
         <ProfileItem key={profile._id} profile={profile} />
-        ):<h4>.No profile found.....</h4>
+        ):<h4>No profile found.....</h4>
     }
     </div>
 
-    </>}
-    
     </>
+  }
+  </>
+  
   )
 }
 

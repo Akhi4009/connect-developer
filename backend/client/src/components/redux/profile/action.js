@@ -28,6 +28,7 @@ export const getCurrentProfile=()=>async dispatch=>{
     } catch (error) {
        
         console.log(error)
+        dispatch({ type: CLEAR_PROFILE });
 
         
         dispatch({
