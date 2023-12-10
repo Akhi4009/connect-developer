@@ -2,7 +2,7 @@ import React from 'react'
 import {Link} from "react-router-dom"
 import Moment from "react-moment"
 import { useDispatch, useSelector } from 'react-redux'
-import {addLike,removeLike} from "../redux/post/action"
+import {addLike,deletePost,removeLike} from "../redux/post/action"
 
 const PostItem = ({post}) => {
     const {avatar,name,text,date,likes,comments,user,_id} = post
@@ -49,6 +49,7 @@ const PostItem = ({post}) => {
               {!isLoading && user===user1._id && (
                 <button      
                 type="button"
+                onClick={dispatch(deletePost(_id))}
                 className="btn btn-danger"
               >
                 <i className="fas fa-times"></i>
