@@ -3,6 +3,9 @@ import {useDispatch,useSelector} from "react-redux"
 import { Link, useParams} from "react-router-dom"
 import { getUserProfile } from '../redux/profile/action'
 import Spinner from "../layout/Spinner"
+import ProfileTop from './ProfileTop'
+import ProfileAbout from './ProfileAbout'
+
 const Profile = () => {
 
     const dispatch =useDispatch()
@@ -11,7 +14,7 @@ const Profile = () => {
      const {profile,isLoading} = useSelector(state=>state.profileReducer)
      const {isAuth,isLoading:loading,user} = useSelector(state=>state.authReducer)
 
-        console.log( user?._id===profile?.user._id)
+        // console.log( user?._id===profile?.user._id)
     
    
 
@@ -34,6 +37,10 @@ const Profile = () => {
                 Edit Profile
                 </Link>
             )}
+            <div className='profile-grid my-1'>
+            <ProfileTop profile={profile}/>
+            <ProfileAbout profile={profile}/>
+            </div>
             </>
         )
     }
