@@ -1,4 +1,11 @@
-import { PROFILE_ERROR,GET_PROFILE, CLEAR_PROFILE, UPDATE_PROFILE } from "./actionType"
+import { 
+    PROFILE_ERROR,
+    GET_PROFILE, 
+    CLEAR_PROFILE,
+     UPDATE_PROFILE,
+     GET_PROFILES,
+     GET_REPOS
+     } from "./actionType"
 
 const initialState={
     profile:null,
@@ -15,14 +22,21 @@ export const reducer=(state=initialState,{type,payload})=>{
         
         case UPDATE_PROFILE:
         case GET_PROFILE:
-            return {...state,profile:payload,isLoading:false}
+            return {...state,profile:payload,isLoading:false};
+
+        case GET_PROFILES:
+            return{...state,profiles:payload,isLoading:false};
+        
+        case GET_REPOS:
+            return {...state,repos:payload,isLoading:false};  
+
         case PROFILE_ERROR:
-            return {...state,error:payload,isLoading:false}
+            return {...state,error:payload,isLoading:false};
+
         case CLEAR_PROFILE:
             return{...state,profile:null,repos:[],isLoading:false}
 
-            
-            default:
+        default:
             return state
     }
 

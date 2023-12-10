@@ -1,5 +1,14 @@
 import axios from "axios";
-import { CLEAR_PROFILE, GET_PROFILE,PROFILE_ERROR,UPDATE_PROFILE,ACCOUNT_DELETED } from "./actionType";
+import { 
+    CLEAR_PROFILE,
+     GET_PROFILE,
+     PROFILE_ERROR,
+     UPDATE_PROFILE,
+     ACCOUNT_DELETED,
+     GET_PROFILES,
+     GET_REPOS
+     } from "./actionType";
+
 import {setAlert} from "../alert/action"
 
 
@@ -8,7 +17,7 @@ import {setAlert} from "../alert/action"
 export const getCurrentProfile=()=>async dispatch=>{
 
     try {
-        const res= await axios.get(`http://localhost:5000/profile/me`)
+        const res= await axios.get(`http://localhost:5001/profile/me`)
         // console.log(res.data)
 
         dispatch({
@@ -31,6 +40,93 @@ export const getCurrentProfile=()=>async dispatch=>{
     }
 }
 
+// Get All profile
+
+export const getProfiles=()=>async dispatch=>{
+
+    dispatch({type:CLEAR_PROFILE})
+
+    try {
+        const res= await axios.get(`http://localhost:5001/profile`)
+        // console.log(res.data)
+
+        dispatch({
+            type:GET_PROFILES,
+            payload:res.data
+        })
+        
+    } catch (error) {
+       
+        console.log(error)
+
+        
+        dispatch({
+            type:PROFILE_ERROR,
+            payload:{
+                msg:error.response.statusText,
+                status:error.response.status
+            }
+        })
+    }
+}
+
+// Get Profile By User Id
+export const getUserProfile=(userId)=>async dispatch=>{
+
+    try {
+        const res= await axios.get(`http://localhost:5001/user/${userId}`)
+        // console.log(res.data)
+
+        dispatch({
+            type:GET_PROFILE,
+            payload:res.data
+        })
+        
+    } catch (error) {
+       
+        console.log(error)
+
+        
+        dispatch({
+            type:PROFILE_ERROR,
+            payload:{
+                msg:error.response.statusText,
+                status:error.response.status
+            }
+        })
+    }
+}
+
+// Get Github Repos
+
+export const getGithubRepos=(username)=>async dispatch=>{
+
+    try {
+        const res= await axios.get(`http://localhost:5001/profile/github/${username}`)
+        // console.log(res.data)
+
+        dispatch({
+            type:GET_REPOS,
+            payload:res.data
+        })
+        
+    } catch (error) {
+       
+        console.log(error)
+
+        
+        dispatch({
+            type:PROFILE_ERROR,
+            payload:{
+                msg:error.response.statusText,
+                status:error.response.status
+            }
+        })
+    }
+}
+
+
+
 // Create or Update profile
 
 export const createProfile=(formData,navigate,edit=false)=> async dispatch=>{
@@ -42,7 +138,7 @@ export const createProfile=(formData,navigate,edit=false)=> async dispatch=>{
             }
         }
 
-        const res= await axios.post(`http://localhost:5000/profile`,formData,config)
+        const res= await axios.post(`http://localhost:5001/profile`,formData,config)
         
         dispatch({
             type:GET_PROFILE,
@@ -86,7 +182,7 @@ export const addExperience=(formData,navigate)=>async dispatch=>{
             }
         }
 
-        const res= await axios.put(`http://localhost:5000/profile/experience`,formData,config)
+        const res= await axios.put(`http://localhost:5001/profile/experience`,formData,config)
         
         dispatch({
             type:UPDATE_PROFILE,
@@ -129,7 +225,7 @@ export const addEducation=(formData,navigate)=>async dispatch=>{
             }
         }
 
-        const res= await axios.put(`http://localhost:5000/profile/education`,formData,config)
+        const res= await axios.put(`http://localhost:5001/profile/education`,formData,config)
         
         dispatch({
             type:UPDATE_PROFILE,
@@ -168,7 +264,7 @@ export const deleteExperience=(id)=>async dispatch=>{
     try {
         
 
-        const res= await axios.delete(`http://localhost:5000/profile/experience/${id}`)
+        const res= await axios.delete(`http://localhost:5001/profile/experience/${id}`)
         
         dispatch({
             type:UPDATE_PROFILE,
@@ -197,7 +293,7 @@ export const deleteEducation=(id)=>async dispatch=>{
     try {
         
 
-        const res= await axios.delete(`http://localhost:5000/profile/education/${id}`)
+        const res= await axios.delete(`http://localhost:5001/profile/education/${id}`)
         
         dispatch({
             type:UPDATE_PROFILE,
@@ -227,7 +323,7 @@ export const deleteAccount=()=> async dispatch=>{
 
         try {
         
-            const res= await axios.delete(`http://localhost:5000/profile`)
+            const res= await axios.delete(`http://localhost:5001/profile`)
             console.log(res)
             
             dispatch({type:CLEAR_PROFILE})

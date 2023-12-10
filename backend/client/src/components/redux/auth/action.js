@@ -22,7 +22,7 @@ export const loadUser = ()=>  async(dispatch) =>{
         setAuthToken(localStorage.token)
     }
     try {
-        const res = await axios.get(`http://localhost:5000/auth`);
+        const res = await axios.get(`http://localhost:5001/auth`);
 
         // console.log(res)
 
@@ -54,7 +54,7 @@ export const register=({name,email,password})=>async (dispatch)=>{
 
     try {
         
-        const res = await axios.post(`http://localhost:5000/users/register`,body,config)
+        const res = await axios.post(`http://localhost:5001/users/register`,body,config)
 
         // console.log(res)
 
@@ -66,10 +66,10 @@ export const register=({name,email,password})=>async (dispatch)=>{
         dispatch(loadUser())
     } catch (error) {
 
-        const err=error.response.data.errors
-        console.log(err)
+         const err=error.response.data.errors
+        console.log(error)
 
-        if(err){
+        if(error){
             err.map(err=>dispatch(setAlert(err.msg,'danger')))
 
         }
@@ -96,7 +96,7 @@ export const login=({email,password})=>async (dispatch)=>{
 
     try {
         
-        const res = await axios.post(`http://localhost:5000/auth/login`,body,config)
+        const res = await axios.post(`http://localhost:5001/auth/login`,body,config)
 
         // console.log(res)
 
@@ -113,7 +113,7 @@ export const login=({email,password})=>async (dispatch)=>{
          const err =error.response.data.errors
         console.log(error)
 
-        if(err){
+        if(error){
             err.map(err=>dispatch(setAlert(err.msg,'danger')))
 
         }
