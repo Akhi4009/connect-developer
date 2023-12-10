@@ -11,10 +11,12 @@ import setAuthToken from "./utils/setAuthToken";
 import { loadUser } from "./components/redux/auth/action";
 import Dashboard from "./components/dashboard/Dashboard";
 import PrivateRoute from "./routing/PrivateRoute";
-import CreateProfile from "./components/profile/CreateProfile";
-import EditProfile from "./components/profile/EditProfile";
-import AddExpeience from "./components/profile/AddExpeience";
-import AddEducation from "./components/profile/AddEducation";
+import CreateProfile from "./components/profile-form/CreateProfile";
+import EditProfile from "./components/profile-form/EditProfile";
+import AddExpeience from "./components/profile-form/AddExpeience";
+import AddEducation from "./components/profile-form/AddEducation";
+import Profiles from "./components/profiles/Profiles";
+import Profile from "./components/profile/Profile";
 
 if(localStorage.token){
   setAuthToken(localStorage.token)
@@ -38,9 +40,11 @@ function App() {
      <Routes>
     
      <Route path="/" element={<Landing/>}/>
-     <Route path="/dashboard" element={<PrivateRoute><Dashboard/></PrivateRoute>}/>
      <Route path="/register" element={<Register/>} />
      <Route path="/login" element={<Login/>}/>
+     <Route path="/profiles" element={<Profiles/>}/>
+     <Route path="/profile/:id" element={<Profile/>}/>
+     <Route path="/dashboard" element={<PrivateRoute><Dashboard/></PrivateRoute>}/>
      <Route path="/createprofile" element={<PrivateRoute><CreateProfile/></PrivateRoute>}/>
      <Route path="/edit-profile" element={<PrivateRoute><EditProfile/></PrivateRoute>}/>
      <Route path="/add-experience" element={<PrivateRoute><AddExpeience/></PrivateRoute>}/>
