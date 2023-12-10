@@ -25,7 +25,7 @@ const Dashboard = () => {
 
   return (
     <>
-    { isLoading || profile===null ? <Spinner/> :
+    { isLoading ? <Spinner/> :
     <>
     <h1 className='large text-primary'>Dashboard</h1>
     <p className='lead'>
