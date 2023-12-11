@@ -22,7 +22,7 @@ export const loadUser = ()=>  async(dispatch) =>{
         setAuthToken(localStorage.token)
     }
     try {
-        const res = await axios.get(`http://localhost:5001/auth`);
+        const res = await axios.get(`https://tiny-tan-cuttlefish-vest.cyclic.app/auth`);
 
         // console.log(res)
 
@@ -54,7 +54,7 @@ export const register=({name,email,password})=>async (dispatch)=>{
 
     try {
         
-        const res = await axios.post(`http://localhost:5001/users/register`,body,config)
+        const res = await axios.post(`https://tiny-tan-cuttlefish-vest.cyclic.app/users/register`,body,config)
 
         // console.log(res)
 
@@ -96,7 +96,7 @@ export const login=({email,password})=>async (dispatch)=>{
 
     try {
         
-        const res = await axios.post(`http://localhost:5001/auth/login`,body,config)
+        const res = await axios.post(`https://tiny-tan-cuttlefish-vest.cyclic.app/auth/login`,body,config)
 
         // console.log(res)
 

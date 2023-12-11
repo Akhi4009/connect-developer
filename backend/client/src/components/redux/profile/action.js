@@ -17,7 +17,7 @@ import {setAlert} from "../alert/action"
 export const getCurrentProfile=()=>async dispatch=>{
 
     try {
-        const res= await axios.get(`http://localhost:5001/profile/me`)
+        const res= await axios.get(`https://tiny-tan-cuttlefish-vest.cyclic.app/profile/me`)
          
 
         dispatch({
@@ -48,7 +48,7 @@ export const getProfiles=()=>async dispatch=>{
     dispatch({type:CLEAR_PROFILE})
 
     try {
-        const res= await axios.get(`http://localhost:5001/profile`)
+        const res= await axios.get(`https://tiny-tan-cuttlefish-vest.cyclic.app/profile`)
         // console.log(res.data)
 
         dispatch({
@@ -79,7 +79,7 @@ export const getUserProfile=(userId)=>async dispatch=>{
     
 
     try {
-        const res= await axios.get(`http://localhost:5001/profile/user/${userId}`)
+        const res= await axios.get(`https://tiny-tan-cuttlefish-vest.cyclic.app/profile/user/${userId}`)
         
         //   console.log(res)
 
@@ -109,7 +109,7 @@ export const getUserProfile=(userId)=>async dispatch=>{
 export const getGithubRepos=(username)=>async dispatch=>{
 
     try {
-        const res= await axios.get(`http://localhost:5001/profile/github/${username}`)
+        const res= await axios.get(`https://tiny-tan-cuttlefish-vest.cyclic.app/profile/github/${username}`)
         // console.log(res.data)
 
         dispatch({
@@ -145,7 +145,7 @@ export const createProfile=(formData,navigate,edit=false)=> async dispatch=>{
             }
         }
 
-        const res= await axios.post(`http://localhost:5001/profile`,formData,config)
+        const res= await axios.post(`https://tiny-tan-cuttlefish-vest.cyclic.app/profile`,formData,config)
         
         dispatch({
             type:GET_PROFILE,
@@ -189,7 +189,7 @@ export const addExperience=(formData,navigate)=>async dispatch=>{
             }
         }
 
-        const res= await axios.put(`http://localhost:5001/profile/experience`,formData,config)
+        const res= await axios.put(`https://tiny-tan-cuttlefish-vest.cyclic.app/profile/experience`,formData,config)
         
         dispatch({
             type:UPDATE_PROFILE,
@@ -232,7 +232,7 @@ export const addEducation=(formData,navigate)=>async dispatch=>{
             }
         }
 
-        const res= await axios.put(`http://localhost:5001/profile/education`,formData,config)
+        const res= await axios.put(`https://tiny-tan-cuttlefish-vest.cyclic.app/profile/education`,formData,config)
         
         dispatch({
             type:UPDATE_PROFILE,
@@ -271,7 +271,7 @@ export const deleteExperience=(id)=>async dispatch=>{
     try {
         
 
-        const res= await axios.delete(`http://localhost:5001/profile/experience/${id}`)
+        const res= await axios.delete(`https://tiny-tan-cuttlefish-vest.cyclic.app/profile/experience/${id}`)
         
         dispatch({
             type:UPDATE_PROFILE,
@@ -300,7 +300,7 @@ export const deleteEducation=(id)=>async dispatch=>{
     try {
         
 
-        const res= await axios.delete(`http://localhost:5001/profile/education/${id}`)
+        const res= await axios.delete(`https://tiny-tan-cuttlefish-vest.cyclic.app/profile/education/${id}`)
         
         dispatch({
             type:UPDATE_PROFILE,
@@ -330,7 +330,7 @@ export const deleteAccount=()=> async dispatch=>{
 
         try {
         
-            const res= await axios.delete(`http://localhost:5001/profile`)
+            const res= await axios.delete(`https://tiny-tan-cuttlefish-vest.cyclic.app/profile`)
             console.log(res)
             
             dispatch({type:CLEAR_PROFILE})

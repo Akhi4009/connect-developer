@@ -9,7 +9,7 @@ export const getPosts = () =>async dispatch =>{
 
    try {
     
-    const res = await axios.get(`http://localhost:5001/posts`);
+    const res = await axios.get(`https://tiny-tan-cuttlefish-vest.cyclic.app/posts`);
 
     dispatch({
         type:GET_POSTS,
@@ -32,7 +32,7 @@ export const getPost = (id) =>async dispatch =>{
 
     try {
      
-     const res = await axios.get(`http://localhost:5001/posts/${id}`);
+     const res = await axios.get(`https://tiny-tan-cuttlefish-vest.cyclic.app/posts/${id}`);
  
      dispatch({
          type:GET_POST,
@@ -55,7 +55,7 @@ export const addLike = (id) =>async dispatch =>{
 
     try {
      
-     const res = await axios.put(`http://localhost:5001/posts/like/${id}`);
+     const res = await axios.put(`https://tiny-tan-cuttlefish-vest.cyclic.app/posts/like/${id}`);
  
      dispatch({
          type:UPDATE_LIKES,
@@ -79,7 +79,7 @@ export const addLike = (id) =>async dispatch =>{
 
     try {
      
-     const res = await axios.put(`http://localhost:5001/posts/unlike/${id}`);
+     const res = await axios.put(`https://tiny-tan-cuttlefish-vest.cyclic.app/posts/unlike/${id}`);
  
      dispatch({
          type:UPDATE_LIKES,
@@ -105,7 +105,7 @@ export const addLike = (id) =>async dispatch =>{
 
     try {
      
-     await axios.delete(`http://localhost:5001/posts/${id}`);
+     await axios.delete(`https://tiny-tan-cuttlefish-vest.cyclic.app/posts/${id}`);
  
      dispatch({
          type:DELETE_POST,
@@ -137,7 +137,7 @@ export const addPost = (formData) =>async dispatch =>{
 
     try {
      
-     const res= await axios.post(`http://localhost:5001/posts`,formData,config);
+     const res= await axios.post(`https://tiny-tan-cuttlefish-vest.cyclic.app/posts`,formData,config);
 //  console.log(res);
      dispatch({
          type:ADD_POST,
@@ -169,7 +169,7 @@ export const addComment = (postId,formData) =>async dispatch =>{
     
         try {
          
-         const res= await axios.post(`http://localhost:5001/posts/comment/${postId}`,formData,config);
+         const res= await axios.post(`https://tiny-tan-cuttlefish-vest.cyclic.app/posts/comment/${postId}`,formData,config);
     //   console.log(res);
          dispatch({
              type:ADD_COMMENT,
@@ -195,7 +195,7 @@ export const deleteComment=(postId,commentId)=>async dispatch=>{
 
     try {
 
-        await axios.delete(`http://localhost:5001/posts/comment/${postId}/${commentId}`);
+        await axios.delete(`https://tiny-tan-cuttlefish-vest.cyclic.app/posts/comment/${postId}/${commentId}`);
         //   console.log(res);
              dispatch({
                  type:REMOVE_COMMENT,
