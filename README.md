@@ -37,7 +37,7 @@
   </ul>
 
 <h2>Deployed Link</h2>
-<p>https://air-garage-clone.netlify.app/<p>
+<p>https://connect-developer.vercel.app/<p>
 
 
 
