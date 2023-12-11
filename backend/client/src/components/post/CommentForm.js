@@ -28,7 +28,7 @@ const CommentForm = () => {
             name="text"
             cols="30"
             rows="5"
-            placeholder="Create a comment"
+            placeholder="Comment on this post"
             required
             value={text}
             onChange={(e)=>setText(e.target.value)}
