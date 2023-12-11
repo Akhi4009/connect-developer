@@ -76,11 +76,12 @@ export const getProfiles=()=>async dispatch=>{
 export const getUserProfile=(userId)=>async dispatch=>{
 
     // console.log(userId);
+    
 
     try {
         const res= await axios.get(`http://localhost:5001/profile/user/${userId}`)
         
-        //  console.log(res.data)
+        //   console.log(res)
 
          dispatch({
             type:GET_PROFILE,
@@ -90,6 +91,7 @@ export const getUserProfile=(userId)=>async dispatch=>{
     } catch (error) {
        
         console.log(error)
+        dispatch({type:CLEAR_PROFILE})
 
         
         dispatch({

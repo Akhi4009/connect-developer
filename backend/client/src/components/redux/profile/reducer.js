@@ -22,19 +22,19 @@ export const reducer=(state=initialState,{type,payload})=>{
         
         case UPDATE_PROFILE:
         case GET_PROFILE:
-            return {...state,profile:payload,isLoading:false};
+            return {...state,profile:payload,isLoading:false,error:{}};
 
         case GET_PROFILES:
-            return{...state,profiles:payload,isLoading:false};
+            return{...state,profiles:payload,isLoading:false,error:{}};
         
         case GET_REPOS:
-            return {...state,repos:payload,isLoading:false};  
+            return {...state,repos:payload,isLoading:false,error:{}};  
 
         case PROFILE_ERROR:
-            return {...state,error:payload,isLoading:false,};
+            return {...state,error:payload,isLoading:false};
 
         case CLEAR_PROFILE:
-            return{...state,profile:null,repos:[],isLoading:false}
+            return{...state,profile:null,repos:[],isLoading:false,error:{}}
 
         default:
             return state

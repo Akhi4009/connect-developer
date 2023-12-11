@@ -151,8 +151,10 @@ router.get("/user/:user_id",async(req,res)=>{
         const profile = await Profile.find({
             user:req.params.user_id
         }).populate('user',['name', 'avatar'])
+
+        //  console.log(profile)
         
-        if(!profile)
+        if(!profile || profile.length===0)
         return res.status(400).json({msg:"Profile is not found"})
     
 

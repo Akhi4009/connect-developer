@@ -6,7 +6,7 @@ const ProfileGithub = ({username}) => {
     
     const dispatch=useDispatch()
 
-    const {repos} = useSelector(state=>state.profileReducer)
+    const {repos,isLoading,error} = useSelector(state=>state.profileReducer)
     console.log(repos)
     useEffect(()=>{
 
@@ -18,8 +18,11 @@ const ProfileGithub = ({username}) => {
           <h2 className="text-primary my-1">
             <i className="fab fa-github"></i> Github Repos
           </h2>
-
-          {repos ===null ? <Spinner/> :(
+         
+          {error.status===404}{
+            <h4 className='text text-primary'>No Github profile found</h4>
+          }
+          {isLoading ? <Spinner/> :(
             repos.map(repo=>(
 
                 <div key={repo.name} className="repo bg-white p-1 my-1">

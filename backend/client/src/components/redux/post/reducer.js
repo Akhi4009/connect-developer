@@ -25,7 +25,7 @@ export const reducer=(state=initiaState,{type,payload})=>{
             return {...state,posts:state.posts.filter(post=>post._id!==payload)};
             
         case POST_ERROR:
-            return{...state,isLoading:false,error:payload}
+            return{...state,isLoading:false,error:payload,}
 
         case UPDATE_LIKES:
             return {...state,posts:state.posts.map(post=>post._id===payload.id ? {...post,likes:payload.likes}:post)};

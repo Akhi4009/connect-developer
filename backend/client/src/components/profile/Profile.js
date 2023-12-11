@@ -14,67 +14,74 @@ const Profile = () => {
     const dispatch =useDispatch()
      const {id} = useParams()
 
-     const {profile,isLoading} = useSelector(state=>state.profileReducer)
+     const {profile,isLoading,error} = useSelector(state=>state.profileReducer)
      const {isAuth,isLoading:loading,user} = useSelector(state=>state.authReducer)
 
         // console.log( user?._id===profile?.user._id)
+
     
-   
+   console.log(error)
 
     useEffect(()=>{
         
         dispatch(getUserProfile(id))
         
     },[dispatch,id])
+    
+    
+   
   return (
     <>
-    {profile ===null || isLoading ? (
-        <Spinner/>
-        ):(
-            <>
-            <Link to="/profiles" className='btn btn-primary'>
-            Back To Profiles
+    { profile !== null && !isLoading  ? (
+      (
+        <>
+        <Link to="/profiles" className='btn btn-primary'>
+        Back To Profiles
+        </Link>
+        {isAuth && !loading && user?._id === profile?.user._id &&(
+            <Link to="/edit-profile" className='btn btn-dark'>
+            Edit Profile
             </Link>
-            {isAuth && !loading && user?._id === profile?.user._id &&(
-                <Link to="/edit-profile" className='btn btn-dark'>
-                Edit Profile
-                </Link>
-            )}
-            <div className='profile-grid my-1'>
-            <ProfileTop profile={profile}/>
+        )}
+        <div className='profile-grid my-1'>
+        <ProfileTop profile={profile}/>
 
-            <ProfileAbout profile={profile}/>
+        <ProfileAbout profile={profile}/>
 
-            <div className="profile-exp bg-white p-2">
+        <div className="profile-exp bg-white p-2">
 
-          <h2 className="text-primary">Experience</h2>
-          {profile?.experience?.length>0 ?(<>
-            {profile.experience.map(experience=>(
-                <ProfileExperience key={experience._id} experience={experience}/>
-            ))}
-            </>):(
-                <h4>No experience crendential</h4>
-            )}
-          </div>
+      <h2 className="text-primary">Experience</h2>
+      {profile?.experience?.length>0 ?(<>
+        {profile.experience.map(experience=>(
+            <ProfileExperience key={experience._id} experience={experience}/>
+        ))}
+        </>):(
+            <h4>No experience crendential</h4>
+        )}
+      </div>
 
-          <div className="profile-edu bg-white p-2">
-            
-          <h2 className="text-primary">Education</h2>
-          {profile?.education?.length>0 ?(<>
-            {profile.education.map(education=>(
-                <ProfileEducation key={education._id} education={education}/>
-            ))}
-            </>):(
-                <h4>No education crendential</h4>
-            )}
-          </div>
+      <div className="profile-edu bg-white p-2">
+        
+      <h2 className="text-primary">Education</h2>
+      {profile?.education?.length>0 ?(<>
+        {profile.education.map(education=>(
+            <ProfileEducation key={education._id} education={education}/>
+        ))}
+        </>):(
+            <h4>No education crendential</h4>
+        )}
+      </div>
 
-          {profile.githubusername && (
-            <ProfileGithub username={profile.githubusername}/>
-          )}
-            </div>
-            </>
+      { profile!==null && profile?.githubusername && (
+        <ProfileGithub username={profile.githubusername}/>
+      )}
+        </div>
+        </>
+    )
+        ): (
+          <Spinner/>
         )
+          
     }
 
     </>
