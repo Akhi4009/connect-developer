@@ -1,5 +1,5 @@
 import axios from "axios"
-import {ADD_POST, DELETE_POST, GET_POSTS,POST_ERROR,UPDATE_LIKES,GET_POST, ADD_COMMENT} from "./actionType"
+import {ADD_POST, DELETE_POST, GET_POSTS,POST_ERROR,UPDATE_LIKES,GET_POST, ADD_COMMENT, REMOVE_COMMENT} from "./actionType"
 import {setAlert} from "../alert/action"
 
 // Get All Posts
@@ -17,7 +17,7 @@ export const getPosts = () =>async dispatch =>{
     });
 
    } catch (err) {
-    console.log(err)
+    // console.log(err)
     dispatch({
         type:POST_ERROR,
         payload:{msg:"err.responce.statusText",status:err.response.status}
@@ -179,7 +179,7 @@ export const addComment = (postId,formData) =>async dispatch =>{
      
         } catch (err) {
     
-         console.log(err.response)
+        //  console.log(err.response)
     
          dispatch({
              type:POST_ERROR,
@@ -187,4 +187,32 @@ export const addComment = (postId,formData) =>async dispatch =>{
          })
         }
      }
+
+
+// Remove Comment
+ 
+export const deleteComment=(postId,commentId)=>async dispatch=>{
+
+    try {
+
+        await axios.delete(`http://localhost:5001/posts/comment/${postId}/${commentId}`);
+        //   console.log(res);
+             dispatch({
+                 type:REMOVE_COMMENT,
+                 payload:commentId
+             });
+             dispatch(setAlert('comment removed','success'))
+         
+
+        
+    } catch (err) {
+        
+        // console.log(err.response)
+    
+        dispatch({
+            type:POST_ERROR,
+            payload:{msg:err?.response?.statusText,status:err?.response?.status}
+        })
+    }
+}
     

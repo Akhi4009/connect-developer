@@ -14,13 +14,13 @@ const Profile = () => {
     const dispatch =useDispatch()
      const {id} = useParams()
 
-     const {profile,isLoading,error} = useSelector(state=>state.profileReducer)
+     const {profile,isLoading} = useSelector(state=>state.profileReducer)
      const {isAuth,isLoading:loading,user} = useSelector(state=>state.authReducer)
 
         // console.log( user?._id===profile?.user._id)
 
     
-   console.log(error)
+  //  console.log(error)
 
     useEffect(()=>{
         

@@ -1,4 +1,4 @@
-import { ADD_POST, DELETE_POST, GET_POST, GET_POSTS,POST_ERROR, UPDATE_LIKES,ADD_COMMENT } from "./actionType";
+import { ADD_POST, DELETE_POST, GET_POST, GET_POSTS,POST_ERROR, UPDATE_LIKES,ADD_COMMENT, REMOVE_COMMENT } from "./actionType";
 
 
 const initiaState={
@@ -22,17 +22,28 @@ export const reducer=(state=initiaState,{type,payload})=>{
             return {...state,posts:[payload,...state.posts],isLoading:false};
             
         case DELETE_POST:
-            return {...state,posts:state.posts.filter(post=>post._id!==payload)};
+            return {...state,posts:state.posts.filter(post=>post._id!==payload),isLoading:false};
             
         case POST_ERROR:
             return{...state,isLoading:false,error:payload,}
 
         case UPDATE_LIKES:
-            return {...state,posts:state.posts.map(post=>post._id===payload.id ? {...post,likes:payload.likes}:post)};
+            return {...state,posts:state.posts.map(post=>post._id===payload.id ? {...post,likes:payload.likes}:post),isLoading:false};
 
         case ADD_COMMENT:
-                return {...state,post:{...state.post,comments:payload}}
-        default:
+                return {...state,post:{...state.post,comments:payload},isLoading:false}
+        
+        case REMOVE_COMMENT:
+            return{
+                ...state,
+                post:{
+                    ...state.post,
+                    comments:state.post.comments.filter(comment=>comment._id!==payload)
+                },
+                isLoading:false
+            
+            }
+                default:
             return state;
     }
 }

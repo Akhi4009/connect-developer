@@ -7,7 +7,7 @@ const ProfileGithub = ({username}) => {
     const dispatch=useDispatch()
 
     const {repos,isLoading,error} = useSelector(state=>state.profileReducer)
-    console.log(repos)
+    // console.log(repos)
     useEffect(()=>{
 
         dispatch(getGithubRepos(username))

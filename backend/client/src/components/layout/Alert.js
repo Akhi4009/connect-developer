@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 const Alert = () => {
 
     const alerts=useSelector(state=>state.alertReducer)
-    console.log(alerts)
+    // console.log(alerts)
 
     return(
       <>
