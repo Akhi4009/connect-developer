@@ -1,4 +1,4 @@
-import { DELETE_POST, GET_POSTS,POST_ERROR, UPDATE_LIKES } from "./actionType";
+import { ADD_POST, DELETE_POST, GET_POSTS,POST_ERROR, UPDATE_LIKES } from "./actionType";
 
 
 const initiaState={
@@ -14,8 +14,13 @@ export const reducer=(state=initiaState,{type,payload})=>{
 
         case GET_POSTS:
             return {...state,isLoading:false,posts:payload};
+
+        case ADD_POST:
+            return {...state,posts:[payload,...state.posts],isLoading:false};
+
         case DELETE_POST:
-            return {...state,posts:state.posts.filter(post=>post._id!==payload)}
+            return {...state,posts:state.posts.filter(post=>post._id!==payload)};
+            
         case POST_ERROR:
             return{...state,isLoading:false,error:payload}
 

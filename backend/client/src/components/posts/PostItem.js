@@ -49,7 +49,7 @@ const PostItem = ({post}) => {
               {!isLoading && user===user1._id && (
                 <button      
                 type="button"
-                onClick={dispatch(deletePost(_id))}
+                onClick={()=>dispatch(deletePost(_id))}
                 className="btn btn-danger"
               >
                 <i className="fas fa-times"></i>
