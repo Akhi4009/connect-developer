@@ -18,6 +18,7 @@ import AddEducation from "./components/profile-form/AddEducation";
 import Profiles from "./components/profiles/Profiles";
 import Profile from "./components/profile/Profile";
 import Posts from "./components/posts/Posts";
+import Post from "./components/post/Post";
 
 if(localStorage.token){
   setAuthToken(localStorage.token)
@@ -44,8 +45,9 @@ function App() {
      <Route path="/register" element={<Register/>} />
      <Route path="/login" element={<Login/>}/>
      <Route path="/profiles" element={<Profiles/>}/>
-     <Route path="/posts" element={<PrivateRoute><Posts/></PrivateRoute>}/>
      <Route path="/profile/:id" element={<Profile/>}/>
+     <Route path="/posts" element={<PrivateRoute><Posts/></PrivateRoute>}/>
+     <Route path="/post/:id" element={<PrivateRoute><Post/></PrivateRoute>}/>
      <Route path="/dashboard" element={<PrivateRoute><Dashboard/></PrivateRoute>}/>
      <Route path="/createprofile" element={<PrivateRoute><CreateProfile/></PrivateRoute>}/>
      <Route path="/edit-profile" element={<PrivateRoute><EditProfile/></PrivateRoute>}/>

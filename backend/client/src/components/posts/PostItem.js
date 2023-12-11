@@ -4,7 +4,7 @@ import Moment from "react-moment"
 import { useDispatch, useSelector } from 'react-redux'
 import {addLike,deletePost,removeLike} from "../redux/post/action"
 
-const PostItem = ({post}) => {
+const PostItem = ({post,showActions=true}) => {
     const {avatar,name,text,date,likes,comments,user,_id} = post
     const dispatch=useDispatch()
 
@@ -13,7 +13,7 @@ const PostItem = ({post}) => {
     <>
     <div className="post bg-white p-1 my-1">
           <div>
-            <Link to="/profile">
+            <Link to={`/profile/${user}`}>
               <img
                 className="round-img"
                 src={avatar}
@@ -29,7 +29,9 @@ const PostItem = ({post}) => {
              <p className="post-date">
                 Posted on <Moment format='YYYY/MM/DD'>{date}</Moment>
             </p>
-            <button onClick={()=>dispatch(addLike(_id))} type="button" className="btn btn-light">
+
+            {showActions && <>
+              <button onClick={()=>dispatch(addLike(_id))} type="button" className="btn btn-light">
               <i className="fas fa-thumbs-up"></i>{' '}
               {likes.length>0 && (
                 <span>{likes.length}</span>
@@ -55,6 +57,10 @@ const PostItem = ({post}) => {
                 <i className="fas fa-times"></i>
               </button>
               )}
+              </>}
+
+
+
             
           </div>
         </div>

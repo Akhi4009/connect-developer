@@ -1,5 +1,5 @@
 import axios from "axios"
-import {ADD_POST, DELETE_POST, GET_POSTS,POST_ERROR,UPDATE_LIKES} from "./actionType"
+import {ADD_POST, DELETE_POST, GET_POSTS,POST_ERROR,UPDATE_LIKES,GET_POST, ADD_COMMENT} from "./actionType"
 import {setAlert} from "../alert/action"
 
 // Get All Posts
@@ -24,6 +24,29 @@ export const getPosts = () =>async dispatch =>{
     })
    }
 }
+
+// Get single Post
+
+
+export const getPost = (id) =>async dispatch =>{
+
+    try {
+     
+     const res = await axios.get(`http://localhost:5001/posts/${id}`);
+ 
+     dispatch({
+         type:GET_POST,
+         payload:res.data
+     });
+ 
+    } catch (err) {
+     console.log(err)
+     dispatch({
+         type:POST_ERROR,
+         payload:{msg:"err.responce.statusText",status:err.response.status}
+     })
+    }
+ }
 
 
 // Add Like
@@ -132,3 +155,36 @@ export const addPost = (formData) =>async dispatch =>{
      })
     }
  }
+
+
+ // Add Comment
+
+export const addComment = (postId,formData) =>async dispatch =>{
+    // console.log(formData)
+        const config={
+            headers:{
+                'Content-Type': 'application/json'
+            }
+        }
+    
+        try {
+         
+         const res= await axios.post(`http://localhost:5001/posts/comment/${postId}`,formData,config);
+    //   console.log(res);
+         dispatch({
+             type:ADD_COMMENT,
+             payload:res.data
+         });
+         dispatch(setAlert('comment added','success'))
+     
+        } catch (err) {
+    
+         console.log(err.response)
+    
+         dispatch({
+             type:POST_ERROR,
+             payload:{msg:err?.response?.statusText,status:err?.response?.status}
+         })
+        }
+     }
+    

@@ -1,4 +1,4 @@
-import { ADD_POST, DELETE_POST, GET_POSTS,POST_ERROR, UPDATE_LIKES } from "./actionType";
+import { ADD_POST, DELETE_POST, GET_POST, GET_POSTS,POST_ERROR, UPDATE_LIKES,ADD_COMMENT } from "./actionType";
 
 
 const initiaState={
@@ -15,9 +15,12 @@ export const reducer=(state=initiaState,{type,payload})=>{
         case GET_POSTS:
             return {...state,isLoading:false,posts:payload};
 
+        case GET_POST:
+            return {...state,post:payload,isLoading:false}
+
         case ADD_POST:
             return {...state,posts:[payload,...state.posts],isLoading:false};
-
+            
         case DELETE_POST:
             return {...state,posts:state.posts.filter(post=>post._id!==payload)};
             
@@ -25,7 +28,10 @@ export const reducer=(state=initiaState,{type,payload})=>{
             return{...state,isLoading:false,error:payload}
 
         case UPDATE_LIKES:
-            return {...state,posts:state.posts.map(post=>post._id===payload.id ? {...post,likes:payload.likes}:post)}
+            return {...state,posts:state.posts.map(post=>post._id===payload.id ? {...post,likes:payload.likes}:post)};
+
+        case ADD_COMMENT:
+                return {...state,post:{...state.post,comments:payload}}
         default:
             return state;
     }
