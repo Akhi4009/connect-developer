@@ -14,15 +14,27 @@
 <li>CSS</li>
 <li>JavaScript</li>
 <li>React</li>
+<li>Redux</li>
+<li>JNodejs</li>
+<li>Expressjs</li>
+<li>MongoDB</li>
+<li>Mongoose</li>
+<li>bcryptjs</li>
+<li>jsonwebtoken</li>
+
 
 </ul>
 
 <h2>Features</h2>
 <ul>
-<li>Home Page</li>
+<li>Landing page</li>
+<li>Signup page & Functionality</li>
 <li>Login Page & Functionality</li>
-<li>Parking Page & Functionality</li>
-</ul>
+<li>Dashboard page & Functionality </li>
+<li>Profile page & Functionality </li>
+<li>Post page & Functionality </li>
+<li>Comment & like fuctionality </li>
+  </ul>
 
 <h2>Deployed Link</h2>
 <p>https://air-garage-clone.netlify.app/<p>
