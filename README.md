@@ -3,13 +3,13 @@
 <h2>Description</h2>
 <p>Dev connector is a platform designed for developers to connect, share insights, create posts, and explore content from fellow developers. Join our community to engage in meaningful discussions, showcase your expertise, and stay updated with the latest trends in the developer community. Create and share your own posts, while also discovering valuable content from other developers on our platform.</p>
 <h2>Landing Page</h2>
-<img src="/backend/client/src/img/landing.png)" alt="AirGarage" border="0">
+<img src="/backend/client/src/img/landing.png" alt="dev" border="0">
 <h2>Find Parking Page</h2>
-<img src="/backend/client/src/img/developer.png" alt="AirGarage" border="0">
+<img src="/backend/client/src/img/developer.png" alt="dev" border="0">
 <h2>Create Post Page</h2>
-<img src="/backend/client/src/img/post.png" alt="AirGarage" border="0">
+<img src="/backend/client/src/img/post.png" alt="dev" border="0">
 <h2>Profile Page</h2>
-<img src="/backend/client/src/img/profile.png" alt="AirGarage" border="0">
+<img src="/backend/client/src/img/profile.png" alt="dev" border="0">
 
 <h2>Tech Stacks used in this project</h2>
 <ul>
